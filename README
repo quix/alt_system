@@ -1,0 +1,8 @@
+
+Alternate implementations of system() and backticks `` for Windows.
+
+Problems in the old implementations are detailed by the rspec output.
+
+$ gem install rspec
+$ spec ./specification.rb -fh > system_spec_new.html
+$ spec ./specification.rb -fh -- --old > system_spec_old.html
