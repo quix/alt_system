@@ -25,11 +25,43 @@
 require 'rbconfig'
 
 if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
-  module System__private__
+  module SystemRepair
+    BINARY_EXTS = %w[com exe]
+
+    BATCHFILE_EXTS = %w[bat] +
+      if (t = ENV["COMSPEC"]) and t =~ %r!command\.exe\Z!i
+        []
+      else
+        %w[cmd]
+      end
+
+    RUNNABLE_EXTS = BINARY_EXTS + BATCHFILE_EXTS
+
+    RUNNABLE_PATTERN, BINARY_PATTERN, BATCHFILE_PATTERN =
+      [RUNNABLE_EXTS, BINARY_EXTS, BATCHFILE_EXTS].map { |exts|
+        if exts.size > 1
+          %r!\.(#{exts.join('|')})\Z!i
+        else
+          %r!\.#{exts.first}\Z!i
+        end
+      }
+
+    class << self
+      def define_module_function(name, &block)
+        define_method(name, &block)
+        module_function(name)
+      end
+    end
+
+    define_module_function :system_previous, &Kernel.method(:system)
+    define_module_function :backticks_previous, &Kernel.method(:'`')
+
+    module_function
+
     def system(cmd, *args)
-      fixed_args = 
+      repaired_args = 
         if args.empty?
-          [fix_command(cmd)]
+          [repair_command(cmd)]
         else
           file = cmd.to_s
           if file =~ BATCHFILE_PATTERN
@@ -42,39 +74,18 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
             end
           end
         end
-      system_previous(*fixed_args)
+      if repaired_args.size == 1
+        system_previous("call #{repaired_args.first}")
+      else
+        system_previous(*repaired_args)
+      end
     end
 
     def backticks(cmd)
-      backticks_previous(fix_command(cmd))
+      backticks_previous(repair_command(cmd))
     end
 
-    define_method :system_previous, &Kernel.method(:system)
-    define_method :backticks_previous, &Kernel.method(:'`')
-
-    BINARY_EXTS = %w[com exe]
-    BATCHFILE_EXTS = %w[bat] +
-      if (t = ENV["COMSPEC"]) and t =~ %r!command\.exe\Z!i
-        []
-      else
-        %w[cmd]
-      end
-    RUNNABLE_EXTS = BINARY_EXTS + BATCHFILE_EXTS
-
-    RUNNABLE_PATTERN,
-    BINARY_PATTERN,
-    BATCHFILE_PATTERN =
-      [ RUNNABLE_EXTS,
-        BINARY_EXTS,
-        BATCHFILE_EXTS ].map { |exts|
-        if exts.size > 1
-          %r!\.(#{exts.join('|')})\Z!i
-        else
-          %r!\.#{exts.first}\Z!i
-        end
-      }
-      
-    def fix_command(cmd)
+    def repair_command(cmd)
       if (match = cmd.match(%r!\A\s*\"(.*?)\"!)) or
          (match = cmd.match(%r!\A(\S+)!))
         if runnable = find_runnable(match.captures.first)
@@ -121,15 +132,13 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
         nil
       end
     end
-
-    extend self
   end
 
   module Kernel
     remove_method :system
     remove_method :'`'
 
-    define_method :system, &System__private__.method(:system)
-    define_method :'`', &System__private__.method(:backticks)
+    define_method :system, &SystemRepair.method(:system)
+    define_method :'`', &SystemRepair.method(:backticks)
   end
 end
