@@ -22,6 +22,10 @@
 # SOFTWARE.
 #
 
+#
+# Specification of system() and backticks `` for Windows.
+#
+
 require 'rbconfig'
 
 unless Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
@@ -42,7 +46,13 @@ include FileUtils
 OLD_SYSTEM = ARGV.include?("--old")
 
 unless OLD_SYSTEM
-  require './system.rb'
+  require './repaired_system.rb'
+  module Kernel
+    [:system, :'`'].each { |name|
+      remove_method name
+      define_method name, &RepairedSystem.method(name)
+    }
+  end
 end
 
 DATA_DIR = "test_data"
@@ -330,7 +340,7 @@ end
 # top-level specification
 ############################################################
 
-describe((OLD_SYSTEM ? "**OLD**" : "**NEW**") + " system()") do
+describe((OLD_SYSTEM ? "(OLD)" : "(NEW)") + " system()") do
   create_main_examples(RUNNABLE_EXTS.sort)
   create_builtin_examples
 end

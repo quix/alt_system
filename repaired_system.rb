@@ -24,8 +24,17 @@
 
 require 'rbconfig'
 
-if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
-  module SystemRepair
+#
+# Alternate implementations of system() and backticks `` for Windows.
+# 
+# Problems in the old implementations are detailed by the rspec output.
+# 
+#   $ gem install rspec
+#   $ spec ./system_spec.rb -fh > system_spec_new.html
+#   $ spec ./system_spec.rb -fh -- --old > system_spec_old.html
+#
+module RepairedSystem
+  if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
     BINARY_EXTS = %w[com exe]
 
     BATCHFILE_EXTS = %w[bat] +
@@ -57,33 +66,6 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
     define_module_function :backticks_previous, &Kernel.method(:'`')
 
     module_function
-
-    def system(cmd, *args)
-      repaired_args = 
-        if args.empty?
-          [repair_command(cmd)]
-        else
-          file = cmd.to_s
-          if file =~ BATCHFILE_PATTERN
-            [join_command(file, *args)]
-          else
-            if runnable = find_runnable(file)
-              [File.expand_path(runnable), *args]
-            else
-              [join_command(file, *args)]
-            end
-          end
-        end
-      if repaired_args.size == 1
-        system_previous("call #{repaired_args.first}")
-      else
-        system_previous(*repaired_args)
-      end
-    end
-
-    def backticks(cmd)
-      backticks_previous(repair_command(cmd))
-    end
 
     def repair_command(cmd)
       if (match = cmd.match(%r!\A\s*\"(.*?)\"!)) or
@@ -132,13 +114,32 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
         nil
       end
     end
-  end
 
-  module Kernel
-    remove_method :system
-    remove_method :'`'
+    def system(cmd, *args)
+      repaired_args = 
+        if args.empty?
+          [repair_command(cmd)]
+        else
+          file = cmd.to_s
+          if file =~ BATCHFILE_PATTERN
+            [join_command(file, *args)]
+          else
+            if runnable = find_runnable(file)
+              [File.expand_path(runnable), *args]
+            else
+              [join_command(file, *args)]
+            end
+          end
+        end
+      if repaired_args.size == 1
+        system_previous("call #{repaired_args.first}")
+      else
+        system_previous(*repaired_args)
+      end
+    end
 
-    define_method :system, &SystemRepair.method(:system)
-    define_method :'`', &SystemRepair.method(:backticks)
+    def `(cmd) #`
+      backticks_previous(repair_command(cmd))
+    end
   end
 end
