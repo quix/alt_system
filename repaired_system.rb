@@ -24,17 +24,24 @@
 
 require 'rbconfig'
 
+module Rake
+end
+
 #
 # Alternate implementations of system() and backticks `` for Windows.
 # 
-# Problems in the old implementations are detailed by the rspec output.
-# 
-#   $ gem install rspec
-#   $ spec ./system_spec.rb -fh > system_spec_new.html
-#   $ spec ./system_spec.rb -fh -- --old > system_spec_old.html
-#
-module RepairedSystem
-  if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
+module Rake::RepairedSystem
+  class << self
+    def define_module_function(name, &block)
+      define_method(name, &block)
+      module_function(name)
+    end
+  end
+
+  if Config::CONFIG["host_os"] !~ %r!(msdos|mswin|djgpp|mingw)!
+    define_module_function :system, &Kernel.method(:system)
+    define_module_function :'`', &Kernel.method(:'`')
+  else
     BINARY_EXTS = %w[com exe]
 
     BATCHFILE_EXTS = %w[bat] +
@@ -54,13 +61,6 @@ module RepairedSystem
           %r!\.#{exts.first}\Z!i
         end
       }
-
-    class << self
-      def define_module_function(name, &block)
-        define_method(name, &block)
-        module_function(name)
-      end
-    end
 
     define_module_function :system_previous, &Kernel.method(:system)
     define_module_function :backticks_previous, &Kernel.method(:'`')
@@ -106,10 +106,13 @@ module RepairedSystem
       if file =~ RUNNABLE_PATTERN
         file
       else
-        RUNNABLE_EXTS.each { |ext|
-          if File.exist?(t = "#{file}.#{ext}")
-            return t
-          end
+        [nil, ".", *ENV["PATH"].split(";")].each { |path|
+          RUNNABLE_EXTS.each { |ext|
+            test = (path ? "#{path}/" : "") + "#{file}.#{ext}"
+            if File.exist?(test)
+              return test
+            end
+          }
         }
         nil
       end
