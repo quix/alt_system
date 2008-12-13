@@ -131,7 +131,11 @@ module Rake::RepairedSystem
           # maybe a built-in shell command
           [join_command(file, *args)]
         end
-      system_previous(*repaired_args)
+      if repaired_args.size == 1
+        system_previous("call #{repaired_args.first}")
+      else
+        system_previous(*repaired_args)
+      end
     end
 
     def `(cmd) #`
