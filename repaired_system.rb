@@ -101,13 +101,10 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
       if file =~ RUNNABLE_PATTERN
         file
       else
-        [nil, ".", *ENV["PATH"].split(";")].each { |path|
-          RUNNABLE_EXTS.each { |ext|
-            test = (path ? "#{path}/" : "") + "#{file}.#{ext}"
-            if File.exist?(test)
-              return test
-            end
-          }
+        RUNNABLE_EXTS.each { |ext|
+          if File.exist?(test = "#{file}.#{ext}")
+            return test
+          end
         }
         nil
       end
