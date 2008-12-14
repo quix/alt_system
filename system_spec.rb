@@ -377,18 +377,20 @@ def create_variable_expansion_examples
   cmd_string = cmd_array.join(" ")
   result = lambda { File.read(RESULT_DATA).strip }
 
-  before do
-    File.open(EXPANSION_TEST, "w") { |expansion_test|
-      expansion_test.puts %{
-        File.open("#{RESULT_DATA}", "w") { |result_data|
-          result_data.puts(ARGV.first)
-        }
-        puts(ARGV.first)
-      }
-    }
-  end
-
   describe "variable expansion: " do
+    before do
+      unless File.exist? EXPANSION_TEST
+        File.open(EXPANSION_TEST, "w") { |expansion_test|
+          expansion_test.puts %{
+            File.open("#{RESULT_DATA}", "w") { |result_data|
+              result_data.puts(ARGV.first)
+            }
+            puts(ARGV.first)
+          }
+        }
+      end
+    end
+
     it "should expand arguments passed via command string" do
       with_env_var(name, value) {
         system(cmd_string).should == true
