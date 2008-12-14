@@ -55,7 +55,14 @@ unless OLD_SYSTEM
   end
 end
 
+RUBY_COMMAND_STRING = %{
+  File.join(Config::CONFIG["bindir"], Config::CONFIG["ruby_install_name"])
+}.strip
+
+RUBY_COMMAND = eval RUBY_COMMAND_STRING 
+
 DATA_DIR = "test_data"
+EXPANSION_TEST = "expansion.rb"
 RESULT_DATA = "result.txt"
 DUMMY_EXE = "dummy.exe"
 
@@ -96,6 +103,24 @@ def append_ext(file, ext)
     file
   else
     "#{file}.#{ext}"
+  end
+end
+
+def check_backticks_success
+  $?.should_not == nil and $?.exitstatus.should == 0
+end
+
+def with_env_var(name, value)
+  previous = ENV[name]
+  ENV[name] = value
+  begin
+    yield
+  ensure
+    if previous
+      ENV[name] = previous
+    else
+      ENV.delete(name)
+    end
   end
 end
 
@@ -164,8 +189,7 @@ def create_batchfile_example(cmd, file, args = [])
       `#{cmd}`.strip.should == file
     end
     it "`#{desc}` should exit cleanly (backticks)" do
-      $?.should_not == nil and
-      $?.exitstatus.should == 0
+      check_backticks_success
     end
   end
 end
@@ -290,7 +314,7 @@ def create_example_sets(ext)
   end
 end
 
-def create_main_examples(exts)
+def create_basic_examples(exts)
   before :all do
     @pwd = Dir.pwd
     rm_rf(DATA_DIR)
@@ -330,8 +354,58 @@ def create_builtin_examples
       `echo 1 2`.strip.should == "1 2"
     end
     it "should exit cleanly with backticks" do
-      $?.should_not == nil and
-      $?.exitstatus.should == 0
+      check_backticks_success
+    end
+  end
+end
+
+def create_ruby_command_examples
+  describe "with joined config parameters #{RUBY_COMMAND_STRING}" do
+    it "should succeed with with arguments passed via command string" do
+      system(%{#{RUBY_COMMAND} -e ""}).should == true
+    end
+    it "should succeed with with arguments passed via ruby" do
+      system(RUBY_COMMAND, "-e", "").should == true
+    end
+  end
+end
+
+def create_variable_expansion_examples
+  name, value = ["TEST_VAR", "--some-value--"]
+  name_deref = "%#{name}%"
+  cmd_array = [RUBY_COMMAND, EXPANSION_TEST, name_deref]
+  cmd_string = cmd_array.join(" ")
+  result = lambda { File.read(RESULT_DATA).strip }
+
+  before do
+    File.open(EXPANSION_TEST, "w") { |expansion_test|
+      expansion_test.puts %{
+        File.open("#{RESULT_DATA}", "w") { |result_data|
+          result_data.puts(ARGV.first)
+        }
+        puts(ARGV.first)
+      }
+    }
+  end
+
+  describe "variable expansion: " do
+    it "should expand arguments passed via command string" do
+      with_env_var(name, value) {
+        system(cmd_string).should == true
+        result.call.should == value
+      }
+    end
+    it "should expand arguments passed via command string (backticks)" do
+      with_env_var(name, value) {
+        `#{cmd_string}`.strip.should == value
+        check_backticks_success
+      }
+    end
+    it "should not expand arguments passed via ruby" do
+      with_env_var(name, value) {
+        system(*cmd_array).should == true
+        result.call.should == name_deref
+      }
     end
   end
 end
@@ -341,7 +415,9 @@ end
 ############################################################
 
 describe((OLD_SYSTEM ? "(OLD)" : "(NEW)") + " system()") do
-  create_main_examples(RUNNABLE_EXTS.sort)
+  create_basic_examples(RUNNABLE_EXTS.sort)
+  create_ruby_command_examples
+  create_variable_expansion_examples
   create_builtin_examples
 end
 

@@ -68,16 +68,17 @@ module Rake::RepairedSystem
     module_function
 
     def repair_command(cmd)
-      if (match = cmd.match(%r!\A\s*\"(.*?)\"!)) or
-         (match = cmd.match(%r!\A(\S+)!))
-        if runnable = find_runnable(match.captures.first)
-          quote(to_backslashes(runnable)) + match.post_match
+      "call " +
+        if (match = cmd.match(%r!\A\s*\"(.*?)\"!)) or
+           (match = cmd.match(%r!\A(\S+)!))
+          if runnable = find_runnable(match.captures.first)
+            quote(to_backslashes(runnable)) + match.post_match
+          else
+            cmd
+          end
         else
           cmd
         end
-      else
-        cmd
-      end
     end
 
     def join_command(*args)
@@ -131,11 +132,7 @@ module Rake::RepairedSystem
           # maybe a built-in shell command
           [join_command(file, *args)]
         end
-      if repaired_args.size == 1
-        system_previous("call #{repaired_args.first}")
-      else
-        system_previous(*repaired_args)
-      end
+      system_previous(*repaired_args)
     end
 
     def `(cmd) #`
