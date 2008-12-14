@@ -50,7 +50,7 @@ unless OLD_SYSTEM
   module Kernel
     [:system, :'`'].each { |name|
       remove_method name
-      define_method name, &Rake::RepairedSystem.method(name)
+      define_method name, &RepairedSystem.method(name)
     }
   end
 end

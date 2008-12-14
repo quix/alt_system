@@ -24,24 +24,11 @@
 
 require 'rbconfig'
 
-module Rake
-end
-
-#
-# Alternate implementations of system() and backticks `` for Windows.
-# 
-module Rake::RepairedSystem
-  class << self
-    def define_module_function(name, &block)
-      define_method(name, &block)
-      module_function(name)
-    end
-  end
-
-  if Config::CONFIG["host_os"] !~ %r!(msdos|mswin|djgpp|mingw)!
-    define_module_function :system, &Kernel.method(:system)
-    define_module_function :'`', &Kernel.method(:'`')
-  else
+if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
+  #
+  # Alternate implementations of system() and backticks `` for Windows.
+  # 
+  module RepairedSystem
     BINARY_EXTS = %w[com exe]
 
     BATCHFILE_EXTS = %w[bat] +
@@ -62,6 +49,13 @@ module Rake::RepairedSystem
         end
       }
 
+    class << self
+      def define_module_function(name, &block)
+        define_method(name, &block)
+        module_function(name)
+      end
+    end
+    
     define_module_function :system_previous, &Kernel.method(:system)
     define_module_function :backticks_previous, &Kernel.method(:'`')
 
