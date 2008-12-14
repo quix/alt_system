@@ -129,8 +129,8 @@ module Rake::RepairedSystem
         elsif runnable = find_runnable(file)
           [to_backslashes(File.expand_path(runnable)), *args]
         else
-          # maybe a built-in shell command
-          [join_command(file, *args)]
+          # your friends can't save you now
+          args
         end
       system_previous(*repaired_args)
     end

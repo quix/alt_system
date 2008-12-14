@@ -347,8 +347,8 @@ def create_builtin_examples
     it "should succeed with arguments passed via command string" do
       system("echo 1 2").should == true
     end
-    it "should succeed with arguments passed via ruby" do
-      system("echo", "1", "2").should == true
+    it "should fail with arguments passed via ruby" do
+      system("echo", "1", "2").should == false
     end
     it "should succeed and obtain correct data with backticks" do
       `echo 1 2`.strip.should == "1 2"
