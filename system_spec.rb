@@ -362,10 +362,10 @@ end
 def create_ruby_command_examples
   describe "with joined config parameters #{RUBY_COMMAND_STRING}" do
     it "should succeed with with arguments passed via command string" do
-      system(%{#{RUBY_COMMAND} -e ""}).should == true
+      system(%{#{RUBY_COMMAND} -e "x = 1"}).should == true
     end
     it "should succeed with with arguments passed via ruby" do
-      system(RUBY_COMMAND, "-e", "").should == true
+      system(RUBY_COMMAND, "-e", "x = 1").should == true
     end
   end
 end
