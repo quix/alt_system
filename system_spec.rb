@@ -314,7 +314,7 @@ def create_example_sets(ext)
   end
 end
 
-def create_basic_examples(exts)
+def create_basic_examples
   before :all do
     @pwd = Dir.pwd
     rm_rf(DATA_DIR)
@@ -334,13 +334,13 @@ def create_basic_examples(exts)
     Dir.chdir(@pwd)
   end
     
-  exts.each { |ext|
+  RUNNABLE_EXTS.sort.each { |ext|
     create_example_sets(ext)
   }
 end
 
 def create_builtin_examples
-  describe "for built-in commands such as echo" do
+  describe "with built-in commands such as echo" do
     it "should succeed with no arguments" do
       system("echo").should == true
     end
@@ -361,10 +361,10 @@ end
 
 def create_ruby_command_examples
   describe "with joined config parameters #{RUBY_COMMAND_STRING}" do
-    it "should succeed with with arguments passed via command string" do
+    it "should succeed with arguments passed via command string" do
       system(%{#{RUBY_COMMAND} -e "x = 1"}).should == true
     end
-    it "should succeed with with arguments passed via ruby" do
+    it "should succeed with arguments passed via ruby" do
       system(RUBY_COMMAND, "-e", "x = 1").should == true
     end
   end
@@ -377,7 +377,7 @@ def create_variable_expansion_examples
   cmd_string = cmd_array.join(" ")
   result = lambda { File.read(RESULT_DATA).strip }
 
-  describe "variable expansion: " do
+  describe "variable expansion" do
     before do
       unless File.exist? EXPANSION_TEST
         File.open(EXPANSION_TEST, "w") { |expansion_test|
@@ -412,15 +412,61 @@ def create_variable_expansion_examples
   end
 end
 
+def create_empty_examples
+  describe "with empty argument(s)" do
+    it "should fail with one empty argument" do
+      system("").should == false
+    end
+    it "should raise Errno::ENOENT with one empty argument (backticks)" do
+      lambda { `` }.should raise_error(Errno::ENOENT)
+    end
+    it "should fail with multiple empty arguments passed via ruby" do
+      system("", "").should == false
+    end
+  end
+end
+
+#
+# Since I am not aware of a way to distinguish between a shell command
+# and a nonexistent file, I cannot raise Errno::ENOENT while also
+# expanding variables with 'call'.
+#
+# A possible workaround is to test against all cmd.exe shell commands,
+# but since other shells may be used this seems infeasible.
+#
+def create_nonexistent_examples
+  describe "with nonexistent command" do
+    cmd = "z5411408d3199cd1ea9b6b941ee5afd294c4cb642b8"
+    it "should fail with no arguments" do
+      system(cmd).should == false
+    end
+    #it "should raise Errno::ENOENT with no arguments (backticks)" do
+    #  lambda { `#{cmd}` }.should raise_error(Errno::ENOENT)
+    #end
+    it "should fail with multiple arguments passed via command string" do
+      system("#{cmd} 1 2").should == false
+    end
+    #it "should raise Errno::ENOENT with multiple arguments " +
+    #  "passed via command string (backticks)" do
+    #  lambda { `#{cmd} 1 2` }.should raise_error(Errno::ENOENT)
+    #end
+    it "should fail with multiple arguments passed via ruby" do
+      system(cmd, "1", "2").should == false
+    end
+  end
+end
+
 ############################################################
 # top-level specification
 ############################################################
 
 describe((OLD_SYSTEM ? "(OLD)" : "(NEW)") + " system()") do
-  create_basic_examples(RUNNABLE_EXTS.sort)
+  create_basic_examples
+  create_builtin_examples
   create_ruby_command_examples
   create_variable_expansion_examples
-  create_builtin_examples
+  create_empty_examples
+  create_nonexistent_examples
 end
 
 ############################################################

@@ -33,12 +33,7 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
 
     BINARY_EXTS = %w[com exe]
 
-    BATCHFILE_EXTS = %w[bat] +
-      if File.basename(COMSPEC) =~ %r!cmd!i
-        %w[cmd]
-      else
-        []
-      end
+    BATCHFILE_EXTS = %w[bat cmd]
 
     RUNNABLE_EXTS = BINARY_EXTS + BATCHFILE_EXTS
 
@@ -46,8 +41,6 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
       [RUNNABLE_EXTS, BINARY_EXTS, BATCHFILE_EXTS].map { |exts|
         if exts.size > 1
           %r!\.(#{exts.join('|')})\Z!i
-        else
-          %r!\.#{exts.first}\Z!i
         end
       }
 
@@ -64,17 +57,18 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
     module_function
 
     def repair_command(cmd)
-      "call " +
-        if (match = cmd.match(%r!\A\s*\"(.*?)\"!)) or
-           (match = cmd.match(%r!\A(\S+)!))
-          if runnable = find_runnable(match.captures.first)
-            quote(to_backslashes(runnable)) + match.post_match
+      if (match = cmd.match(%r!\A\s*\"(.*?)\"!)) or
+         (match = cmd.match(%r!\A(\S+)!))
+        "call " +
+          if runnable = find_runnable(match[1])
+            quote(runnable) + match.post_match
           else
             cmd
           end
-        else
-          cmd
-        end
+      else
+        # empty or whitespace
+        cmd
+      end
     end
 
     def to_backslashes(string)
@@ -91,7 +85,7 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
       else
         RUNNABLE_EXTS.each { |ext|
           if File.exist?(test = "#{file}.#{ext}")
-            return test
+            return to_backslashes(test)
           end
         }
         nil
