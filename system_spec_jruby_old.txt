@@ -1,0 +1,1300 @@
+
+(OLD) system() should run .bat files with no arguments with relative path
+- a.bat should succeed (FAILED - 1)
+- a.bat should run the correct file (ERROR - 2)
+- `a.bat` should succeed and obtain correct data (backticks) (ERROR - 3)
+- `a.bat` should exit cleanly (backticks) (FAILED - 4)
+- "a.bat" should succeed (FAILED - 5)
+- "a.bat" should run the correct file (ERROR - 6)
+- `"a.bat"` should succeed and obtain correct data (backticks) (ERROR - 7)
+- `"a.bat"` should exit cleanly (backticks) (FAILED - 8)
+- "b c.bat" should succeed (FAILED - 9)
+- "b c.bat" should run the correct file (ERROR - 10)
+- `"b c.bat"` should succeed and obtain correct data (backticks) (ERROR - 11)
+- `"b c.bat"` should exit cleanly (backticks) (FAILED - 12)
+- d/e.bat should succeed (FAILED - 13)
+- d/e.bat should run the correct file (ERROR - 14)
+- `d/e.bat` should succeed and obtain correct data (backticks) (ERROR - 15)
+- `d/e.bat` should exit cleanly (backticks) (FAILED - 16)
+- "d/e.bat" should succeed (FAILED - 17)
+- "d/e.bat" should run the correct file (ERROR - 18)
+- `"d/e.bat"` should succeed and obtain correct data (backticks) (ERROR - 19)
+- `"d/e.bat"` should exit cleanly (backticks) (FAILED - 20)
+- "f/g h.bat" should succeed (FAILED - 21)
+- "f/g h.bat" should run the correct file (ERROR - 22)
+- `"f/g h.bat"` should succeed and obtain correct data (backticks) (ERROR - 23)
+- `"f/g h.bat"` should exit cleanly (backticks) (FAILED - 24)
+- "i j/k.bat" should succeed (FAILED - 25)
+- "i j/k.bat" should run the correct file (ERROR - 26)
+- `"i j/k.bat"` should succeed and obtain correct data (backticks) (ERROR - 27)
+- `"i j/k.bat"` should exit cleanly (backticks) (FAILED - 28)
+- "l m/n o.bat" should succeed (FAILED - 29)
+- "l m/n o.bat" should run the correct file (ERROR - 30)
+- `"l m/n o.bat"` should succeed and obtain correct data (backticks) (ERROR - 31)
+- `"l m/n o.bat"` should exit cleanly (backticks) (FAILED - 32)
+- p/q/r.bat should succeed (FAILED - 33)
+- p/q/r.bat should run the correct file (ERROR - 34)
+- `p/q/r.bat` should succeed and obtain correct data (backticks) (ERROR - 35)
+- `p/q/r.bat` should exit cleanly (backticks) (FAILED - 36)
+- "p/q/r.bat" should succeed (FAILED - 37)
+- "p/q/r.bat" should run the correct file (ERROR - 38)
+- `"p/q/r.bat"` should succeed and obtain correct data (backticks) (ERROR - 39)
+- `"p/q/r.bat"` should exit cleanly (backticks) (FAILED - 40)
+- "s t/u v/w x/y z.bat" should succeed (FAILED - 41)
+- "s t/u v/w x/y z.bat" should run the correct file (ERROR - 42)
+- `"s t/u v/w x/y z.bat"` should succeed and obtain correct data (backticks) (ERROR - 43)
+- `"s t/u v/w x/y z.bat"` should exit cleanly (backticks) (FAILED - 44)
+
+(OLD) system() should run .bat files with no arguments with absolute path
+X:/system/test_data/a.bat
+- X:/system/test_data/a.bat should succeed
+- X:/system/test_data/a.bat should run the correct file
+- `X:/system/test_data/a.bat` should succeed and obtain correct data (backticks)
+- `X:/system/test_data/a.bat` should exit cleanly (backticks)
+X:/system/test_data/a.bat
+- "X:/system/test_data/a.bat" should succeed
+- "X:/system/test_data/a.bat" should run the correct file
+- `"X:/system/test_data/a.bat"` should succeed and obtain correct data (backticks)
+- `"X:/system/test_data/a.bat"` should exit cleanly (backticks)
+X:/system/test_data/b c.bat
+- "X:/system/test_data/b c.bat" should succeed
+- "X:/system/test_data/b c.bat" should run the correct file
+- `"X:/system/test_data/b c.bat"` should succeed and obtain correct data (backticks)
+- `"X:/system/test_data/b c.bat"` should exit cleanly (backticks)
+X:/system/test_data/d/e.bat
+- X:/system/test_data/d/e.bat should succeed
+- X:/system/test_data/d/e.bat should run the correct file
+- `X:/system/test_data/d/e.bat` should succeed and obtain correct data (backticks)
+- `X:/system/test_data/d/e.bat` should exit cleanly (backticks)
+X:/system/test_data/d/e.bat
+- "X:/system/test_data/d/e.bat" should succeed
+- "X:/system/test_data/d/e.bat" should run the correct file
+- `"X:/system/test_data/d/e.bat"` should succeed and obtain correct data (backticks)
+- `"X:/system/test_data/d/e.bat"` should exit cleanly (backticks)
+X:/system/test_data/f/g h.bat
+- "X:/system/test_data/f/g h.bat" should succeed
+- "X:/system/test_data/f/g h.bat" should run the correct file
+- `"X:/system/test_data/f/g h.bat"` should succeed and obtain correct data (backticks)
+- `"X:/system/test_data/f/g h.bat"` should exit cleanly (backticks)
+X:/system/test_data/i j/k.bat
+- "X:/system/test_data/i j/k.bat" should succeed
+- "X:/system/test_data/i j/k.bat" should run the correct file
+- `"X:/system/test_data/i j/k.bat"` should succeed and obtain correct data (backticks)
+- `"X:/system/test_data/i j/k.bat"` should exit cleanly (backticks)
+X:/system/test_data/l m/n o.bat
+- "X:/system/test_data/l m/n o.bat" should succeed
+- "X:/system/test_data/l m/n o.bat" should run the correct file
+- `"X:/system/test_data/l m/n o.bat"` should succeed and obtain correct data (backticks)
+- `"X:/system/test_data/l m/n o.bat"` should exit cleanly (backticks)
+X:/system/test_data/p/q/r.bat
+- X:/system/test_data/p/q/r.bat should succeed
+- X:/system/test_data/p/q/r.bat should run the correct file
+- `X:/system/test_data/p/q/r.bat` should succeed and obtain correct data (backticks)
+- `X:/system/test_data/p/q/r.bat` should exit cleanly (backticks)
+X:/system/test_data/p/q/r.bat
+- "X:/system/test_data/p/q/r.bat" should succeed
+- "X:/system/test_data/p/q/r.bat" should run the correct file
+- `"X:/system/test_data/p/q/r.bat"` should succeed and obtain correct data (backticks)
+- `"X:/system/test_data/p/q/r.bat"` should exit cleanly (backticks)
+X:/system/test_data/s t/u v/w x/y z.bat
+- "X:/system/test_data/s t/u v/w x/y z.bat" should succeed
+- "X:/system/test_data/s t/u v/w x/y z.bat" should run the correct file
+- `"X:/system/test_data/s t/u v/w x/y z.bat"` should succeed and obtain correct data (backticks)
+- `"X:/system/test_data/s t/u v/w x/y z.bat"` should exit cleanly (backticks)
+
+(OLD) system() should run .bat files with arguments passed via ruby with relative path
+- a.bat, 1, 2 should succeed (FAILED - 45)
+- a.bat, 1, 2 should run the correct file (ERROR - 46)
+- b c.bat, 1, 2 should succeed (FAILED - 47)
+- b c.bat, 1, 2 should run the correct file (ERROR - 48)
+- d/e.bat, 1, 2 should succeed (FAILED - 49)
+- d/e.bat, 1, 2 should run the correct file (ERROR - 50)
+- f/g h.bat, 1, 2 should succeed (FAILED - 51)
+- f/g h.bat, 1, 2 should run the correct file (ERROR - 52)
+- i j/k.bat, 1, 2 should succeed (FAILED - 53)
+- i j/k.bat, 1, 2 should run the correct file (ERROR - 54)
+- l m/n o.bat, 1, 2 should succeed (FAILED - 55)
+- l m/n o.bat, 1, 2 should run the correct file (ERROR - 56)
+- p/q/r.bat, 1, 2 should succeed (FAILED - 57)
+- p/q/r.bat, 1, 2 should run the correct file (ERROR - 58)
+- s t/u v/w x/y z.bat, 1, 2 should succeed (FAILED - 59)
+- s t/u v/w x/y z.bat, 1, 2 should run the correct file (ERROR - 60)
+
+(OLD) system() should run .bat files with arguments passed via ruby with absolute path
+X:/system/test_data/a.bat
+- X:/system/test_data/a.bat, 1, 2 should succeed
+- X:/system/test_data/a.bat, 1, 2 should run the correct file
+X:/system/test_data/b c.bat
+- X:/system/test_data/b c.bat, 1, 2 should succeed
+- X:/system/test_data/b c.bat, 1, 2 should run the correct file
+X:/system/test_data/d/e.bat
+- X:/system/test_data/d/e.bat, 1, 2 should succeed
+- X:/system/test_data/d/e.bat, 1, 2 should run the correct file
+X:/system/test_data/f/g h.bat
+- X:/system/test_data/f/g h.bat, 1, 2 should succeed
+- X:/system/test_data/f/g h.bat, 1, 2 should run the correct file
+X:/system/test_data/i j/k.bat
+- X:/system/test_data/i j/k.bat, 1, 2 should succeed
+- X:/system/test_data/i j/k.bat, 1, 2 should run the correct file
+X:/system/test_data/l m/n o.bat
+- X:/system/test_data/l m/n o.bat, 1, 2 should succeed
+- X:/system/test_data/l m/n o.bat, 1, 2 should run the correct file
+X:/system/test_data/p/q/r.bat
+- X:/system/test_data/p/q/r.bat, 1, 2 should succeed
+- X:/system/test_data/p/q/r.bat, 1, 2 should run the correct file
+X:/system/test_data/s t/u v/w x/y z.bat
+- X:/system/test_data/s t/u v/w x/y z.bat, 1, 2 should succeed
+- X:/system/test_data/s t/u v/w x/y z.bat, 1, 2 should run the correct file
+
+(OLD) system() should run .bat files with arguments passed via command string with relative path
+X:/system/test_data/a.bat
+- a.bat 1 2 should succeed
+- a.bat 1 2 should run the correct file
+- `a.bat 1 2` should succeed and obtain correct data (backticks)
+- `a.bat 1 2` should exit cleanly (backticks)
+- "a.bat" 1 2 should succeed (FAILED - 61)
+- "a.bat" 1 2 should run the correct file
+
+1)
+'(OLD) system() should run .bat files with no arguments with relative path a.bat should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+2)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path a.bat should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+3)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `a.bat` should succeed and obtain correct data (backticks)'
+Cannot run program "a.bat" (in directory "X:\system\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+4)
+'(OLD) system() should run .bat files with no arguments with relative path `a.bat` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+5)
+'(OLD) system() should run .bat files with no arguments with relative path "a.bat" should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+6)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path "a.bat" should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+7)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `"a.bat"` should succeed and obtain correct data (backticks)'
+Cannot run program "a.bat" (in directory "X:\system\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+8)
+'(OLD) system() should run .bat files with no arguments with relative path `"a.bat"` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+9)
+'(OLD) system() should run .bat files with no arguments with relative path "b c.bat" should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+10)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path "b c.bat" should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+11)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `"b c.bat"` should succeed and obtain correct data (backticks)'
+Cannot run program "b c.bat" (in directory "X:\system\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+12)
+'(OLD) system() should run .bat files with no arguments with relative path `"b c.bat"` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+13)
+'(OLD) system() should run .bat files with no arguments with relative path d/e.bat should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+14)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path d/e.bat should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+15)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `d/e.bat` should succeed and obtain correct data (backticks)'
+Cannot run program "d/e.bat" (in directory "X:\system\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+16)
+'(OLD) system() should run .bat files with no arguments with relative path `d/e.bat` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+17)
+'(OLD) system() should run .bat files with no arguments with relative path "d/e.bat" should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+18)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path "d/e.bat" should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+19)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `"d/e.bat"` should succeed and obtain correct data (backticks)'
+Cannot run program "d/e.bat" (in directory "X:\system\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+20)
+'(OLD) system() should run .bat files with no arguments with relative path `"d/e.bat"` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+21)
+'(OLD) system() should run .bat files with no arguments with relative path "f/g h.bat" should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+22)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path "f/g h.bat" should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+23)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `"f/g h.bat"` should succeed and obtain correct data (backticks)'
+Cannot run program "f/g h.bat" (in directory "X:\system\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+24)
+'(OLD) system() should run .bat files with no arguments with relative path `"f/g h.bat"` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+25)
+'(OLD) system() should run .bat files with no arguments with relative path "i j/k.bat" should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+26)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path "i j/k.bat" should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+27)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `"i j/k.bat"` should succeed and obtain correct data (backticks)'
+Cannot run program "i j/k.bat" (in directory "X:\system\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+28)
+'(OLD) system() should run .bat files with no arguments with relative path `"i j/k.bat"` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+29)
+'(OLD) system() should run .bat files with no arguments with relative path "l m/n o.bat" should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+30)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path "l m/n o.bat" should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+31)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `"l m/n o.bat"` should succeed and obtain correct data (backticks)'
+Cannot run program "l m/n o.bat" (in directory "X:\system\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+32)
+'(OLD) system() should run .bat files with no arguments with relative path `"l m/n o.bat"` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+33)
+'(OLD) system() should run .bat files with no arguments with relative path p/q/r.bat should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+34)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path p/q/r.bat should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+35)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `p/q/r.bat` should succeed and obtain correct data (backticks)'
+Cannot run program "p/q/r.bat" (in directory "X:\system\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+36)
+'(OLD) system() should run .bat files with no arguments with relative path `p/q/r.bat` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+37)
+'(OLD) system() should run .bat files with no arguments with relative path "p/q/r.bat" should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+38)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path "p/q/r.bat" should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+39)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `"p/q/r.bat"` should succeed and obtain correct data (backticks)'
+Cannot run program "p/q/r.bat" (in directory "X:\system\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+40)
+'(OLD) system() should run .bat files with no arguments with relative path `"p/q/r.bat"` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+41)
+'(OLD) system() should run .bat files with no arguments with relative path "s t/u v/w x/y z.bat" should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+42)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path "s t/u v/w x/y z.bat" should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+43)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `"s t/u v/w x/y z.bat"` should succeed and obtain correct data (backticks)'
+Cannot run program "s t/u v/w x/y z.bat" (in directory "X:\system\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+44)
+'(OLD) system() should run .bat files with no arguments with relative path `"s t/u v/w x/y z.bat"` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+45)
+'(OLD) system() should run .bat files with arguments passed via ruby with relative path a.bat, 1, 2 should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+46)
+Errno::ENOENT in '(OLD) system() should run .bat files with arguments passed via ruby with relative path a.bat, 1, 2 should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+47)
+'(OLD) system() should run .bat files with arguments passed via ruby with relative path b c.bat, 1, 2 should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+48)
+Errno::ENOENT in '(OLD) system() should run .bat files with arguments passed via ruby with relative path b c.bat, 1, 2 should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+49)
+'(OLD) system() should run .bat files with arguments passed via ruby with relative path d/e.bat, 1, 2 should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+50)
+Errno::ENOENT in '(OLD) system() should run .bat files with arguments passed via ruby with relative path d/e.bat, 1, 2 should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+51)
+'(OLD) system() should run .bat files with arguments passed via ruby with relative path f/g h.bat, 1, 2 should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+52)
+Errno::ENOENT in '(OLD) system() should run .bat files with arguments passed via ruby with relative path f/g h.bat, 1, 2 should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+53)
+'(OLD) system() should run .bat files with arguments passed via ruby with relative path i j/k.bat, 1, 2 should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+54)
+Errno::ENOENT in '(OLD) system() should run .bat files with arguments passed via ruby with relative path i j/k.bat, 1, 2 should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+55)
+'(OLD) system() should run .bat files with arguments passed via ruby with relative path l m/n o.bat, 1, 2 should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+56)
+Errno::ENOENT in '(OLD) system() should run .bat files with arguments passed via ruby with relative path l m/n o.bat, 1, 2 should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+57)
+'(OLD) system() should run .bat files with arguments passed via ruby with relative path p/q/r.bat, 1, 2 should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+58)
+Errno::ENOENT in '(OLD) system() should run .bat files with arguments passed via ruby with relative path p/q/r.bat, 1, 2 should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+59)
+'(OLD) system() should run .bat files with arguments passed via ruby with relative path s t/u v/w x/y z.bat, 1, 2 should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+60)
+Errno::ENOENT in '(OLD) system() should run .bat files with arguments passed via ruby with relative path s t/u v/w x/y z.bat, 1, 2 should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+61)
+'(OLD) system() should run .bat files with arguments passed via command string with relative path "a.bat" 1 2 should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+x:\jruby\bin\spec:19
+
+Finished in 10.906839 seconds
+
+126 examples, 61 failures
+
+(OLD) system() should run .bat files with no arguments with relative path
+- a.bat should succeed (FAILED - 1)
+- a.bat should run the correct file (ERROR - 2)
+- `a.bat` should succeed and obtain correct data (backticks) (ERROR - 3)
+- `a.bat` should exit cleanly (backticks) (FAILED - 4)
+- "a.bat" should succeed (FAILED - 5)
+- "a.bat" should run the correct file (ERROR - 6)
+- `"a.bat"` should succeed and obtain correct data (backticks) (ERROR - 7)
+- `"a.bat"` should exit cleanly (backticks) (FAILED - 8)
+- "b c.bat" should succeed (FAILED - 9)
+- "b c.bat" should run the correct file (ERROR - 10)
+- `"b c.bat"` should succeed and obtain correct data (backticks) (ERROR - 11)
+- `"b c.bat"` should exit cleanly (backticks) (FAILED - 12)
+- d/e.bat should succeed (FAILED - 13)
+- d/e.bat should run the correct file (ERROR - 14)
+- `d/e.bat` should succeed and obtain correct data (backticks) (ERROR - 15)
+- `d/e.bat` should exit cleanly (backticks) (FAILED - 16)
+- "d/e.bat" should succeed (FAILED - 17)
+- "d/e.bat" should run the correct file (ERROR - 18)
+- `"d/e.bat"` should succeed and obtain correct data (backticks) (ERROR - 19)
+- `"d/e.bat"` should exit cleanly (backticks) (FAILED - 20)
+- "f/g h.bat" should succeed (FAILED - 21)
+- "f/g h.bat" should run the correct file (ERROR - 22)
+- `"f/g h.bat"` should succeed and obtain correct data (backticks) (ERROR - 23)
+- `"f/g h.bat"` should exit cleanly (backticks) (FAILED - 24)
+- "i j/k.bat" should succeed (FAILED - 25)
+- "i j/k.bat" should run the correct file (ERROR - 26)
+- `"i j/k.bat"` should succeed and obtain correct data (backticks) (ERROR - 27)
+- `"i j/k.bat"` should exit cleanly (backticks) (FAILED - 28)
+- "l m/n o.bat" should succeed (FAILED - 29)
+- "l m/n o.bat" should run the correct file (ERROR - 30)
+- `"l m/n o.bat"` should succeed and obtain correct data (backticks) (ERROR - 31)
+- `"l m/n o.bat"` should exit cleanly (backticks) (FAILED - 32)
+- p/q/r.bat should succeed (FAILED - 33)
+- p/q/r.bat should run the correct file (ERROR - 34)
+- `p/q/r.bat` should succeed and obtain correct data (backticks) (ERROR - 35)
+- `p/q/r.bat` should exit cleanly (backticks) (FAILED - 36)
+- "p/q/r.bat" should succeed (FAILED - 37)
+- "p/q/r.bat" should run the correct file (ERROR - 38)
+- `"p/q/r.bat"` should succeed and obtain correct data (backticks) (ERROR - 39)
+- `"p/q/r.bat"` should exit cleanly (backticks) (FAILED - 40)
+- "s t/u v/w x/y z.bat" should succeed (FAILED - 41)
+- "s t/u v/w x/y z.bat" should run the correct file (ERROR - 42)
+- `"s t/u v/w x/y z.bat"` should succeed and obtain correct data (backticks) (ERROR - 43)
+- `"s t/u v/w x/y z.bat"` should exit cleanly (backticks) (FAILED - 44)
+
+(OLD) system() should run .bat files with no arguments with absolute path
+X:/system/test_data/a.bat
+- X:/system/test_data/a.bat should succeed
+- X:/system/test_data/a.bat should run the correct file
+- `X:/system/test_data/a.bat` should succeed and obtain correct data (backticks)
+- `X:/system/test_data/a.bat` should exit cleanly (backticks)
+X:/system/test_data/a.bat
+- "X:/system/test_data/a.bat" should succeed
+- "X:/system/test_data/a.bat" should run the correct file
+- `"X:/system/test_data/a.bat"` should succeed and obtain correct data (backticks)
+- `"X:/system/test_data/a.bat"` should exit cleanly (backticks)
+X:/system/test_data/b c.bat
+- "X:/system/test_data/b c.bat" should succeed
+- "X:/system/test_data/b c.bat" should run the correct file
+- `"X:/system/test_data/b c.bat"` should succeed and obtain correct data (backticks)
+- `"X:/system/test_data/b c.bat"` should exit cleanly (backticks)
+X:/system/test_data/d/e.bat
+- X:/system/test_data/d/e.bat should succeed
+- X:/system/test_data/d/e.bat should run the correct file
+- `X:/system/test_data/d/e.bat` should succeed and obtain correct data (backticks)
+- `X:/system/test_data/d/e.bat` should exit cleanly (backticks)
+X:/system/test_data/d/e.bat
+- "X:/system/test_data/d/e.bat" should succeed
+- "X:/system/test_data/d/e.bat" should run the correct file
+- `"X:/system/test_data/d/e.bat"` should succeed and obtain correct data (backticks)
+- `"X:/system/test_data/d/e.bat"` should exit cleanly (backticks)
+X:/system/test_data/f/g h.bat
+- "X:/system/test_data/f/g h.bat" should succeed
+- "X:/system/test_data/f/g h.bat" should run the correct file
+- `"X:/system/test_data/f/g h.bat"` should succeed and obtain correct data (backticks)
+- `"X:/system/test_data/f/g h.bat"` should exit cleanly (backticks)
+X:/system/test_data/i j/k.bat
+- "X:/system/test_data/i j/k.bat" should succeed
+- "X:/system/test_data/i j/k.bat" should run the correct file
+- `"X:/system/test_data/i j/k.bat"` should succeed and obtain correct data (backticks)
+- `"X:/system/test_data/i j/k.bat"` should exit cleanly (backticks)
+X:/system/test_data/l m/n o.bat
+- "X:/system/test_data/l m/n o.bat" should succeed
+- "X:/system/test_data/l m/n o.bat" should run the correct file
+- `"X:/system/test_data/l m/n o.bat"` should succeed and obtain correct data (backticks)
+- `"X:/system/test_data/l m/n o.bat"` should exit cleanly (backticks)
+X:/system/test_data/p/q/r.bat
+- X:/system/test_data/p/q/r.bat should succeed
+- X:/system/test_data/p/q/r.bat should run the correct file
+- `X:/system/test_data/p/q/r.bat` should succeed and obtain correct data (backticks)
+- `X:/system/test_data/p/q/r.bat` should exit cleanly (backticks)
+X:/system/test_data/p/q/r.bat
+- "X:/system/test_data/p/q/r.bat" should succeed
+- "X:/system/test_data/p/q/r.bat" should run the correct file
+- `"X:/system/test_data/p/q/r.bat"` should succeed and obtain correct data (backticks)
+- `"X:/system/test_data/p/q/r.bat"` should exit cleanly (backticks)
+X:/system/test_data/s t/u v/w x/y z.bat
+- "X:/system/test_data/s t/u v/w x/y z.bat" should succeed
+- "X:/system/test_data/s t/u v/w x/y z.bat" should run the correct file
+- `"X:/system/test_data/s t/u v/w x/y z.bat"` should succeed and obtain correct data (backticks)
+- `"X:/system/test_data/s t/u v/w x/y z.bat"` should exit cleanly (backticks)
+
+(OLD) system() should run .bat files with arguments passed via ruby with relative path
+- a.bat, 1, 2 should succeed (FAILED - 45)
+- a.bat, 1, 2 should run the correct file (ERROR - 46)
+- b c.bat, 1, 2 should succeed (FAILED - 47)
+- b c.bat, 1, 2 should run the correct file (ERROR - 48)
+- d/e.bat, 1, 2 should succeed (FAILED - 49)
+- d/e.bat, 1, 2 should run the correct file (ERROR - 50)
+- f/g h.bat, 1, 2 should succeed (FAILED - 51)
+- f/g h.bat, 1, 2 should run the correct file (ERROR - 52)
+- i j/k.bat, 1, 2 should succeed (FAILED - 53)
+- i j/k.bat, 1, 2 should run the correct file (ERROR - 54)
+- l m/n o.bat, 1, 2 should succeed (FAILED - 55)
+- l m/n o.bat, 1, 2 should run the correct file (ERROR - 56)
+- p/q/r.bat, 1, 2 should succeed (FAILED - 57)
+- p/q/r.bat, 1, 2 should run the correct file (ERROR - 58)
+- s t/u v/w x/y z.bat, 1, 2 should succeed (FAILED - 59)
+- s t/u v/w x/y z.bat, 1, 2 should run the correct file (ERROR - 60)
+
+(OLD) system() should run .bat files with arguments passed via ruby with absolute path
+X:/system/test_data/a.bat
+- X:/system/test_data/a.bat, 1, 2 should succeed
+- X:/system/test_data/a.bat, 1, 2 should run the correct file
+X:/system/test_data/b c.bat
+- X:/system/test_data/b c.bat, 1, 2 should succeed
+- X:/system/test_data/b c.bat, 1, 2 should run the correct file
+X:/system/test_data/d/e.bat
+- X:/system/test_data/d/e.bat, 1, 2 should succeed
+- X:/system/test_data/d/e.bat, 1, 2 should run the correct file
+X:/system/test_data/f/g h.bat
+- X:/system/test_data/f/g h.bat, 1, 2 should succeed
+- X:/system/test_data/f/g h.bat, 1, 2 should run the correct file
+X:/system/test_data/i j/k.bat
+- X:/system/test_data/i j/k.bat, 1, 2 should succeed
+- X:/system/test_data/i j/k.bat, 1, 2 should run the correct file
+X:/system/test_data/l m/n o.bat
+- X:/system/test_data/l m/n o.bat, 1, 2 should succeed
+- X:/system/test_data/l m/n o.bat, 1, 2 should run the correct file
+X:/system/test_data/p/q/r.bat
+- X:/system/test_data/p/q/r.bat, 1, 2 should succeed
+- X:/system/test_data/p/q/r.bat, 1, 2 should run the correct file
+X:/system/test_data/s t/u v/w x/y z.bat
+- X:/system/test_data/s t/u v/w x/y z.bat, 1, 2 should succeed
+- X:/system/test_data/s t/u v/w x/y z.bat, 1, 2 should run the correct file
+
+(OLD) system() should run .bat files with arguments passed via command string with relative path
+'a.bat' is not recognized as an internal or external command,
+operable program or batch file.
+- a.bat 1 2 should succeed (FAILED - 61)
+- a.bat 1 2 should run the correct file (ERROR - 62)
+'a.bat' is not recognized as an internal or external command,
+operable program or batch file.
+- `a.bat 1 2` should succeed and obtain correct data (backticks) (FAILED - 63)
+- `a.bat 1 2` should exit cleanly (backticks) (FAILED - 64)
+- "a.bat" 1 2 should succeed (FAILED - 65)
+- "a.bat" 1 2 should run the correct file (ERROR - 66)
+
+1)
+'(OLD) system() should run .bat files with no arguments with relative path a.bat should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+2)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path a.bat should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+3)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `a.bat` should succeed and obtain correct data (backticks)'
+Cannot run program "a.bat" (in directory "X:\system\test_data\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+:1
+
+4)
+'(OLD) system() should run .bat files with no arguments with relative path `a.bat` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+:1
+
+5)
+'(OLD) system() should run .bat files with no arguments with relative path "a.bat" should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+6)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path "a.bat" should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+7)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `"a.bat"` should succeed and obtain correct data (backticks)'
+Cannot run program "a.bat" (in directory "X:\system\test_data\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+:1
+
+8)
+'(OLD) system() should run .bat files with no arguments with relative path `"a.bat"` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+:1
+
+9)
+'(OLD) system() should run .bat files with no arguments with relative path "b c.bat" should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+10)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path "b c.bat" should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+11)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `"b c.bat"` should succeed and obtain correct data (backticks)'
+Cannot run program "b c.bat" (in directory "X:\system\test_data\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+:1
+
+12)
+'(OLD) system() should run .bat files with no arguments with relative path `"b c.bat"` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+:1
+
+13)
+'(OLD) system() should run .bat files with no arguments with relative path d/e.bat should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+14)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path d/e.bat should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+15)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `d/e.bat` should succeed and obtain correct data (backticks)'
+Cannot run program "d/e.bat" (in directory "X:\system\test_data\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+:1
+
+16)
+'(OLD) system() should run .bat files with no arguments with relative path `d/e.bat` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+:1
+
+17)
+'(OLD) system() should run .bat files with no arguments with relative path "d/e.bat" should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+18)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path "d/e.bat" should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+19)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `"d/e.bat"` should succeed and obtain correct data (backticks)'
+Cannot run program "d/e.bat" (in directory "X:\system\test_data\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+:1
+
+20)
+'(OLD) system() should run .bat files with no arguments with relative path `"d/e.bat"` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+:1
+
+21)
+'(OLD) system() should run .bat files with no arguments with relative path "f/g h.bat" should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+22)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path "f/g h.bat" should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+23)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `"f/g h.bat"` should succeed and obtain correct data (backticks)'
+Cannot run program "f/g h.bat" (in directory "X:\system\test_data\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+:1
+
+24)
+'(OLD) system() should run .bat files with no arguments with relative path `"f/g h.bat"` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+:1
+
+25)
+'(OLD) system() should run .bat files with no arguments with relative path "i j/k.bat" should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+26)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path "i j/k.bat" should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+27)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `"i j/k.bat"` should succeed and obtain correct data (backticks)'
+Cannot run program "i j/k.bat" (in directory "X:\system\test_data\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+:1
+
+28)
+'(OLD) system() should run .bat files with no arguments with relative path `"i j/k.bat"` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+:1
+
+29)
+'(OLD) system() should run .bat files with no arguments with relative path "l m/n o.bat" should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+30)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path "l m/n o.bat" should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+31)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `"l m/n o.bat"` should succeed and obtain correct data (backticks)'
+Cannot run program "l m/n o.bat" (in directory "X:\system\test_data\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+:1
+
+32)
+'(OLD) system() should run .bat files with no arguments with relative path `"l m/n o.bat"` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+:1
+
+33)
+'(OLD) system() should run .bat files with no arguments with relative path p/q/r.bat should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+34)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path p/q/r.bat should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+35)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `p/q/r.bat` should succeed and obtain correct data (backticks)'
+Cannot run program "p/q/r.bat" (in directory "X:\system\test_data\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+:1
+
+36)
+'(OLD) system() should run .bat files with no arguments with relative path `p/q/r.bat` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+:1
+
+37)
+'(OLD) system() should run .bat files with no arguments with relative path "p/q/r.bat" should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+38)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path "p/q/r.bat" should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+39)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `"p/q/r.bat"` should succeed and obtain correct data (backticks)'
+Cannot run program "p/q/r.bat" (in directory "X:\system\test_data\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+:1
+
+40)
+'(OLD) system() should run .bat files with no arguments with relative path `"p/q/r.bat"` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+:1
+
+41)
+'(OLD) system() should run .bat files with no arguments with relative path "s t/u v/w x/y z.bat" should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+42)
+Errno::ENOENT in '(OLD) system() should run .bat files with no arguments with relative path "s t/u v/w x/y z.bat" should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+43)
+IOError in '(OLD) system() should run .bat files with no arguments with relative path `"s t/u v/w x/y z.bat"` should succeed and obtain correct data (backticks)'
+Cannot run program "s t/u v/w x/y z.bat" (in directory "X:\system\test_data\test_data"): CreateProcess error=2, The system cannot find the file specified
+<script>:1:in `create_batchfile_example'
+:1
+
+44)
+'(OLD) system() should run .bat files with no arguments with relative path `"s t/u v/w x/y z.bat"` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 127 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+:1
+
+45)
+'(OLD) system() should run .bat files with arguments passed via ruby with relative path a.bat, 1, 2 should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+46)
+Errno::ENOENT in '(OLD) system() should run .bat files with arguments passed via ruby with relative path a.bat, 1, 2 should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+47)
+'(OLD) system() should run .bat files with arguments passed via ruby with relative path b c.bat, 1, 2 should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+48)
+Errno::ENOENT in '(OLD) system() should run .bat files with arguments passed via ruby with relative path b c.bat, 1, 2 should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+49)
+'(OLD) system() should run .bat files with arguments passed via ruby with relative path d/e.bat, 1, 2 should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+50)
+Errno::ENOENT in '(OLD) system() should run .bat files with arguments passed via ruby with relative path d/e.bat, 1, 2 should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+51)
+'(OLD) system() should run .bat files with arguments passed via ruby with relative path f/g h.bat, 1, 2 should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+52)
+Errno::ENOENT in '(OLD) system() should run .bat files with arguments passed via ruby with relative path f/g h.bat, 1, 2 should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+53)
+'(OLD) system() should run .bat files with arguments passed via ruby with relative path i j/k.bat, 1, 2 should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+54)
+Errno::ENOENT in '(OLD) system() should run .bat files with arguments passed via ruby with relative path i j/k.bat, 1, 2 should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+55)
+'(OLD) system() should run .bat files with arguments passed via ruby with relative path l m/n o.bat, 1, 2 should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+56)
+Errno::ENOENT in '(OLD) system() should run .bat files with arguments passed via ruby with relative path l m/n o.bat, 1, 2 should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+57)
+'(OLD) system() should run .bat files with arguments passed via ruby with relative path p/q/r.bat, 1, 2 should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+58)
+Errno::ENOENT in '(OLD) system() should run .bat files with arguments passed via ruby with relative path p/q/r.bat, 1, 2 should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+59)
+'(OLD) system() should run .bat files with arguments passed via ruby with relative path s t/u v/w x/y z.bat, 1, 2 should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+60)
+Errno::ENOENT in '(OLD) system() should run .bat files with arguments passed via ruby with relative path s t/u v/w x/y z.bat, 1, 2 should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+61)
+'(OLD) system() should run .bat files with arguments passed via command string with relative path a.bat 1 2 should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+62)
+Errno::ENOENT in '(OLD) system() should run .bat files with arguments passed via command string with relative path a.bat 1 2 should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+63)
+'(OLD) system() should run .bat files with arguments passed via command string with relative path `a.bat 1 2` should succeed and obtain correct data (backticks)' FAILED
+expected: "X:/system/test_data/a.bat",
+     got: "" (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+64)
+'(OLD) system() should run .bat files with arguments passed via command string with relative path `a.bat 1 2` should exit cleanly (backticks)' FAILED
+expected: 0,
+     got: 1 (using ==)
+system_spec.rb:110:in `check_backticks_success'
+system_spec.rb:192:in `create_batchfile_example'
+:1
+
+65)
+'(OLD) system() should run .bat files with arguments passed via command string with relative path "a.bat" 1 2 should succeed' FAILED
+expected: true,
+     got: false (using ==)
+<script>:1:in `create_batchfile_example'
+:1
+
+66)
+Errno::ENOENT in '(OLD) system() should run .bat files with arguments passed via command string with relative path "a.bat" 1 2 should run the correct file'
+No such file or directory - File not found - result.txt
+system_spec.rb:185:in `create_batchfile_example'
+:1
+
+Finished in 7.364768 seconds
+
+126 examples, 66 failures
+java.lang.ProcessImpl:-1:in `<init>': java.lang.IllegalArgumentException
+	from java.lang.ProcessImpl:-1:in `start'
+	from java.lang.ProcessBuilder:-1:in `start'
+	from java.lang.Runtime:-1:in `exec'
+	from org.jruby.util.ShellLauncher:551:in `run'
+	from org.jruby.util.ShellLauncher:231:in `runAndWait'
+	from org.jruby.RubyKernel:1174:in `backquote'
+	from org.jruby.RubyKernel$s_method_1_0$RUBYINVOKER$backquote:-1:in `call'
+	from org.jruby.RubyClass:468:in `finvoke'
+	from org.jruby.javasupport.util.RuntimeHelpers:304:in `invoke'
+	from org.jruby.RubyBasicObject:320:in `callMethod'
+	from org.jruby.ast.DXStrNode:72:in `interpret'
+	from org.jruby.ast.CallNoArgNode:61:in `interpret'
+	from org.jruby.ast.CallNoArgNode:61:in `interpret'
+	from org.jruby.ast.CallOneArgNode:57:in `interpret'
+	from org.jruby.ast.NewlineNode:101:in `interpret'
+	from org.jruby.runtime.InterpretedBlock:202:in `evalBlockBody'
+	from org.jruby.runtime.InterpretedBlock:190:in `yield'
+	from org.jruby.runtime.Block:133:in `yield'
+	from org.jruby.RubyObject:491:in `yieldUnder'
+	from org.jruby.RubyObject:313:in `specificEval'
+	from org.jruby.RubyObject:1193:in `instance_eval'
+	from org.jruby.RubyObject$i_method_multi$RUBYFRAMEDINVOKER$instance_eval:-1:in `call'
+	from org.jruby.runtime.callsite.CachingCallSite:270:in `cacheAndCall'
+	from org.jruby.runtime.callsite.CachingCallSite:85:in `call'
+	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.gems.$1_dot_8.gems.rspec_minus_1_dot_1_dot_11.lib.spec.example.example_methods.eval_block12812081_4086417:81:in `__file__'
+	from org.jruby.internal.runtime.methods.DefaultMethod:195:in `call'
+	from org.jruby.runtime.callsite.CachingCallSite:260:in `cacheAndCall'
+	from org.jruby.runtime.callsite.CachingCallSite:75:in `call'
+	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.gems.$1_dot_8.gems.rspec_minus_1_dot_1_dot_11.lib.spec.example.example_methods.execute22089110_4086417:15:in `rescue_1$RUBY$__rescue___0'
+	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.gems.$1_dot_8.gems.rspec_minus_1_dot_1_dot_11.lib.spec.example.example_methods.execute22089110_4086417:13:in `block_0$RUBY$__block__'
+	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.gems.$1_dot_8.gems.rspec_minus_1_dot_1_dot_11.lib.spec.example.example_methods.execute22089110_4086417BlockCallback$block_0$RUBY$__block__xx1:-1:in `call'
+	from org.jruby.runtime.CompiledBlock:120:in `yield'
+	from org.jruby.runtime.Block:124:in `yield'
+	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.$1_dot_8.timeout.timeout31768270_4086417:48:in `__file__'
+	from org.jruby.ast.executable.AbstractScript:31:in `__file__'
+	from org.jruby.internal.runtime.methods.DefaultMethod:258:in `call'
+	from org.jruby.internal.runtime.methods.WrapperMethod:78:in `call'
+	from org.jruby.runtime.callsite.CachingCallSite:139:in `callIter'
+	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.gems.$1_dot_8.gems.rspec_minus_1_dot_1_dot_11.lib.spec.example.example_methods.execute22089110_4086417:12:in `__file__'
+	from org.jruby.internal.runtime.methods.DefaultMethod:279:in `call'
+	from org.jruby.runtime.callsite.CachingCallSite:300:in `cacheAndCall'
+	from org.jruby.runtime.callsite.CachingCallSite:157:in `call'
+	from org.jruby.ast.CallTwoArgNode:59:in `interpret'
+	from org.jruby.ast.CallOneArgNode:57:in `interpret'
+	from org.jruby.ast.LocalAsgnNode:120:in `interpret'
+	from org.jruby.ast.NewlineNode:101:in `interpret'
+	from org.jruby.ast.BlockNode:68:in `interpret'
+	from org.jruby.runtime.InterpretedBlock:202:in `evalBlockBody'
+	from org.jruby.runtime.InterpretedBlock:153:in `yield'
+	from org.jruby.runtime.Block:120:in `yield'
+	from org.jruby.RubyArray:1556:in `each'
+	from org.jruby.RubyArray$i_method_0_0$RUBYFRAMEDINVOKER$each:-1:in `call'
+	from org.jruby.runtime.callsite.CachingCallSite:83:in `call'
+	from org.jruby.ast.CallNoArgBlockNode:63:in `interpret'
+	from org.jruby.ast.NewlineNode:101:in `interpret'
+	from org.jruby.ast.BlockNode:68:in `interpret'
+	from org.jruby.internal.runtime.methods.DefaultMethod:156:in `interpretedCall'
+	from org.jruby.internal.runtime.methods.DefaultMethod:133:in `call'
+	from org.jruby.internal.runtime.methods.DefaultMethod:330:in `call'
+	from org.jruby.runtime.callsite.CachingCallSite:320:in `cacheAndCall'
+	from org.jruby.runtime.callsite.CachingCallSite:198:in `call'
+	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.gems.$1_dot_8.gems.rspec_minus_1_dot_1_dot_11.lib.spec.example.example_group_methods.run25455341_4086417:141:in `__file__'
+	from org.jruby.internal.runtime.methods.DefaultMethod:195:in `call'
+	from org.jruby.runtime.callsite.CachingCallSite:260:in `cacheAndCall'
+	from org.jruby.runtime.callsite.CachingCallSite:75:in `call'
+	from org.jruby.ast.CallNoArgNode:61:in `interpret'
+	from org.jruby.ast.CallOneArgNode:57:in `interpret'
+	from org.jruby.ast.LocalAsgnNode:120:in `interpret'
+	from org.jruby.ast.NewlineNode:101:in `interpret'
+	from org.jruby.runtime.InterpretedBlock:202:in `evalBlockBody'
+	from org.jruby.runtime.InterpretedBlock:153:in `yield'
+	from org.jruby.runtime.Block:120:in `yield'
+	from org.jruby.RubyArray:1556:in `each'
+	from org.jruby.RubyArray$i_method_0_0$RUBYFRAMEDINVOKER$each:-1:in `call'
+	from org.jruby.runtime.callsite.CachingCallSite:270:in `cacheAndCall'
+	from org.jruby.runtime.callsite.CachingCallSite:85:in `call'
+	from org.jruby.ast.CallNoArgBlockNode:63:in `interpret'
+	from org.jruby.ast.NewlineNode:101:in `interpret'
+	from org.jruby.ast.BlockNode:68:in `interpret'
+	from org.jruby.ast.EnsureNode:93:in `interpret'
+	from org.jruby.internal.runtime.methods.DefaultMethod:156:in `interpretedCall'
+	from org.jruby.internal.runtime.methods.DefaultMethod:133:in `call'
+	from org.jruby.internal.runtime.methods.DefaultMethod:204:in `call'
+	from org.jruby.runtime.callsite.CachingCallSite:260:in `cacheAndCall'
+	from org.jruby.runtime.callsite.CachingCallSite:75:in `call'
+	from org.jruby.ast.CallNoArgNode:61:in `interpret'
+	from org.jruby.ast.LocalAsgnNode:120:in `interpret'
+	from org.jruby.ast.NewlineNode:101:in `interpret'
+	from org.jruby.ast.BlockNode:68:in `interpret'
+	from org.jruby.ast.IfNode:111:in `interpret'
+	from org.jruby.ast.NewlineNode:101:in `interpret'
+	from org.jruby.ast.BlockNode:68:in `interpret'
+	from org.jruby.ast.EnsureNode:93:in `interpret'
+	from org.jruby.ast.BeginNode:80:in `interpret'
+	from org.jruby.ast.NewlineNode:101:in `interpret'
+	from org.jruby.ast.BlockNode:68:in `interpret'
+	from org.jruby.internal.runtime.methods.DefaultMethod:156:in `interpretedCall'
+	from org.jruby.internal.runtime.methods.DefaultMethod:133:in `call'
+	from org.jruby.internal.runtime.methods.DefaultMethod:204:in `call'
+	from org.jruby.runtime.callsite.CachingCallSite:260:in `cacheAndCall'
+	from org.jruby.runtime.callsite.CachingCallSite:75:in `call'
+	from org.jruby.ast.CallNoArgNode:61:in `interpret'
+	from org.jruby.ast.NewlineNode:101:in `interpret'
+	from org.jruby.ast.BlockNode:68:in `interpret'
+	from org.jruby.internal.runtime.methods.DefaultMethod:156:in `interpretedCall'
+	from org.jruby.internal.runtime.methods.DefaultMethod:133:in `call'
+	from org.jruby.internal.runtime.methods.DefaultMethod:204:in `call'
+	from org.jruby.runtime.callsite.CachingCallSite:260:in `cacheAndCall'
+	from org.jruby.runtime.callsite.CachingCallSite:75:in `call'
+	from org.jruby.ast.CallNoArgNode:61:in `interpret'
+	from org.jruby.ast.DAsgnNode:107:in `interpret'
+	from org.jruby.ast.NewlineNode:101:in `interpret'
+	from org.jruby.ast.BlockNode:68:in `interpret'
+	from org.jruby.ast.IfNode:111:in `interpret'
+	from org.jruby.ast.NewlineNode:101:in `interpret'
+	from org.jruby.runtime.InterpretedBlock:202:in `evalBlockBody'
+	from org.jruby.runtime.InterpretedBlock:190:in `yield'
+	from org.jruby.runtime.BlockBody:64:in `call'
+	from org.jruby.runtime.BlockBody:70:in `call'
+	from org.jruby.runtime.Block:116:in `call'
+	from org.jruby.RubyProc:205:in `call'
+	from org.jruby.RubyProc:187:in `call'
+	from org.jruby.Ruby:2380:in `tearDown'
+	from org.jruby.Main:216:in `run'
+	from org.jruby.Main:100:in `run'
+	from org.jruby.Main:84:in `main'
