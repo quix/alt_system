@@ -412,48 +412,52 @@ def create_variable_expansion_examples
   end
 end
 
+#
+# Cannot raise Errno::ENOENT for nonexisting files because 'call' is
+# necessary.
+#
+
 def create_empty_examples
   describe "with empty argument(s)" do
     it "should fail with one empty argument" do
       system("").should == false
     end
-    it "should raise Errno::ENOENT with one empty argument (backticks)" do
-      lambda { `` }.should raise_error(Errno::ENOENT)
-    end
+    #it "should raise Errno::ENOENT with one empty argument (backticks)" do
+    #  lambda { `` }.should raise_error(Errno::ENOENT)
+    #end
     it "should fail with multiple empty arguments passed via ruby" do
       system("", "").should == false
     end
   end
 end
 
-#
-# Since I am not aware of a way to distinguish between a shell command
-# and a nonexistent file, I cannot raise Errno::ENOENT while also
-# expanding variables with 'call'.
-#
-# A possible workaround is to test against all cmd.exe shell commands,
-# but since other shells may be used this seems infeasible.
-#
 def create_nonexistent_examples
-  describe "with nonexistent command" do
-    cmd = "z5411408d3199cd1ea9b6b941ee5afd294c4cb642b8"
-    it "should fail with no arguments" do
-      system(cmd).should == false
+  {
+    "with nonexistent batch file" => ".bat",
+    "with nonexistent command" => "",
+  }.each_pair { |desc, ext|
+    describe desc do
+      cmd = rand.to_s + ext
+      raise if File.exist?(cmd)
+  
+      it "should fail with no arguments" do
+        system(cmd).should == false
+      end
+      #it "should raise Errno::ENOENT with no arguments (backticks)" do
+      #  lambda { `#{cmd}` }.should raise_error(Errno::ENOENT)
+      #end
+      it "should fail with multiple arguments passed via command string" do
+        system("#{cmd} 1 2").should == false
+      end
+      #it "should raise Errno::ENOENT with multiple arguments " +
+      #  "passed via command string (backticks)" do
+      #  lambda { `#{cmd} 1 2` }.should raise_error(Errno::ENOENT)
+      #end
+      it "should fail with multiple arguments passed via ruby" do
+        system(cmd, "1", "2").should == false
+      end
     end
-    #it "should raise Errno::ENOENT with no arguments (backticks)" do
-    #  lambda { `#{cmd}` }.should raise_error(Errno::ENOENT)
-    #end
-    it "should fail with multiple arguments passed via command string" do
-      system("#{cmd} 1 2").should == false
-    end
-    #it "should raise Errno::ENOENT with multiple arguments " +
-    #  "passed via command string (backticks)" do
-    #  lambda { `#{cmd} 1 2` }.should raise_error(Errno::ENOENT)
-    #end
-    it "should fail with multiple arguments passed via ruby" do
-      system(cmd, "1", "2").should == false
-    end
-  end
+  }
 end
 
 ############################################################

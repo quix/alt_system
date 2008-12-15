@@ -29,20 +29,8 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
   # Alternate implementations of system() and backticks `` for Windows.
   # 
   module RepairedSystem
-    COMSPEC = ENV["ComSpec"]
-
-    BINARY_EXTS = %w[com exe]
-
-    BATCHFILE_EXTS = %w[bat cmd]
-
-    RUNNABLE_EXTS = BINARY_EXTS + BATCHFILE_EXTS
-
-    RUNNABLE_PATTERN, BINARY_PATTERN, BATCHFILE_PATTERN =
-      [RUNNABLE_EXTS, BINARY_EXTS, BATCHFILE_EXTS].map { |exts|
-        if exts.size > 1
-          %r!\.(#{exts.join('|')})\Z!i
-        end
-      }
+    RUNNABLE_EXTS = %w[com exe bat cmd]
+    RUNNABLE_PATTERN = %r!\.(#{RUNNABLE_EXTS.join('|')})\Z!i
 
     class << self
       def define_module_function(name, &block)
@@ -51,32 +39,24 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
       end
     end
     
-    define_module_function :system_previous, &Kernel.method(:system)
-    define_module_function :backticks_previous, &Kernel.method(:'`')
+    define_module_function :system_kernel, &Kernel.method(:system)
+    define_module_function :backticks_kernel, &Kernel.method(:'`')
 
     module_function
 
     def repair_command(cmd)
-      if (match = cmd.match(%r!\A\s*\"(.*?)\"!)) or
-         (match = cmd.match(%r!\A(\S+)!))
-        "call " +
-          if runnable = find_runnable(match[1])
-            quote(runnable) + match.post_match
-          else
-            cmd
-          end
-      else
-        # empty or whitespace
-        cmd
-      end
-    end
-
-    def to_backslashes(string)
-      string.gsub("/", "\\")
-    end
-
-    def quote(string)
-      %Q!"#{string}"!
+      "call " +
+        if (match = cmd.match(%r!\A\s*\"(.*?)\"!)) or
+           (match = cmd.match(%r!\A\s*(\S+)!))
+            if runnable = find_runnable(match[1])
+              %Q!"#{runnable}"! + match.post_match
+            else
+              cmd
+            end
+        else
+          # empty or whitespace
+          cmd
+        end
     end
 
     def find_runnable(file)
@@ -85,7 +65,7 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
       else
         RUNNABLE_EXTS.each { |ext|
           if File.exist?(test = "#{file}.#{ext}")
-            return to_backslashes(test)
+            return test
           end
         }
         nil
@@ -93,23 +73,20 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
     end
 
     def system(cmd, *args)
-      file = cmd.to_s
-      repaired_args = 
+      repaired =
         if args.empty?
-          [repair_command(file)]
-        elsif file =~ BATCHFILE_PATTERN
-          [COMSPEC, "/c", to_backslashes(File.expand_path(file)), *args]
-        elsif runnable = find_runnable(file)
-          [to_backslashes(File.expand_path(runnable)), *args]
+          [repair_command(cmd)]
+        elsif runnable = find_runnable(cmd)
+          [File.expand_path(runnable), *args]
         else
-          # shell command or non-existent non-batchfile
-          args
+          # non-existent file
+          [cmd, *args]
         end
-      system_previous(*repaired_args)
+      system_kernel(*repaired)
     end
 
     def `(cmd) #`
-      backticks_previous(repair_command(cmd))
+      backticks_kernel(repair_command(cmd))
     end
   end
 end
