@@ -29,13 +29,15 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
   # Alternate implementations of system() and backticks `` for Windows.
   # 
   module RepairedSystem
+    COMSPEC = ENV["ComSpec"]
+
     BINARY_EXTS = %w[com exe]
 
     BATCHFILE_EXTS = %w[bat] +
-      if (t = ENV["COMSPEC"]) and t =~ %r!command\.exe\Z!i
-        []
-      else
+      if File.basename(COMSPEC) =~ %r!cmd!i
         %w[cmd]
+      else
+        []
       end
 
     RUNNABLE_EXTS = BINARY_EXTS + BATCHFILE_EXTS
@@ -75,26 +77,12 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
         end
     end
 
-    def join_command(*args)
-      first =
-        if args.first =~ %r!\s!
-          quote(args.first)
-        else
-          args.first
-        end
-      [to_backslashes(first), *tail(args)].join(" ")
-    end
-
     def to_backslashes(string)
       string.gsub("/", "\\")
     end
 
     def quote(string)
       %Q!"#{string}"!
-    end
-
-    def tail(array)
-      array[1..-1]
     end
 
     def find_runnable(file)
@@ -116,11 +104,11 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
         if args.empty?
           [repair_command(file)]
         elsif file =~ BATCHFILE_PATTERN
-          [ENV["ComSpec"], "/c", to_backslashes(File.expand_path(file)), *args]
+          [COMSPEC, "/c", to_backslashes(File.expand_path(file)), *args]
         elsif runnable = find_runnable(file)
           [to_backslashes(File.expand_path(runnable)), *args]
         else
-          # your friends can't save you now
+          # shell command or non-existent non-batchfile
           args
         end
       system_previous(*repaired_args)
