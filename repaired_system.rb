@@ -46,13 +46,17 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
 
     def repair_command(cmd)
       "call " +
-        if (match = cmd.match(%r!\A\s*\"(.*?)\"!)) or
-           (match = cmd.match(%r!\A\s*(\S+)!))
-            if runnable = find_runnable(match[1])
-              %Q!"#{runnable}"! + match.post_match
-            else
-              cmd
-            end
+        if cmd =~ %r!\A\s*\".*?\"!
+          # already quoted
+          cmd
+        elsif match = cmd.match(%r!\A\s*(\S+)!)
+          first, rest = match[1], match.post_match
+          if first =~ %r!/!
+            %Q!"#{first}"! + rest
+          else
+            # a shell command will fail if quoted
+            cmd
+          end
         else
           # empty or whitespace
           cmd
