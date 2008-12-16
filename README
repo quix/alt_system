@@ -14,3 +14,7 @@ Or individually:
   % rake new
   % rake old
 
+These generate, respectively
+
+  spec_output/system_spec_new.html
+  spec_output/system_spec_old.html

@@ -22,6 +22,8 @@
 # SOFTWARE.
 #
 
+$LOAD_PATH.unshift File.dirname(__FILE__) + "/../lib"
+
 #
 # Specification of system() and backticks `` for Windows.
 #
@@ -46,7 +48,7 @@ include FileUtils
 OLD_SYSTEM = ARGV.include?("--old")
 
 unless OLD_SYSTEM
-  require 'alt_system_insert'
+  require 'alt_system/insert'
 end
 
 RUBY_COMMAND_STRING = %{
@@ -80,12 +82,13 @@ STEMS = [
 # These constants do not exist for --old option.
 #
 BINARY_EXTS = %w[com exe]
-BATCHFILE_EXTS = %w[bat] +
+BATCHFILE_EXTS = %w[bat] + (
   if (t = ENV["COMSPEC"]) and t =~ %r!command\.exe\Z!i
     []
   else
     %w[cmd]
   end
+)
 RUNNABLE_EXTS = BINARY_EXTS + BATCHFILE_EXTS
 
 def quote(string)
@@ -201,12 +204,13 @@ end
 
 def create_example(spec)
   absolute_path = File.expand_path(File.join(DATA_DIR, spec[:stem]))
-  stem = 
+  stem = (
     if spec[:path_type] == :absolute
       absolute_path
     else
       spec[:stem]
     end
+  )
   cmd = append_ext(stem, spec[:cmd_ext])
   file = append_ext(absolute_path, spec[:file_ext])
   has_space = (cmd =~ %r!\s!)
@@ -215,7 +219,8 @@ def create_example(spec)
       :create_batchfile_example
     else
       :create_binary_example
-    end)
+    end
+  )
 
   if spec[:args].empty?
     unless has_space

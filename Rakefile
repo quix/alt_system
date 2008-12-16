@@ -2,21 +2,26 @@
 require 'rake'
 require 'spec/rake/spectask'
 
-SPEC = "system_spec.rb"
+SPEC = "spec/system_spec.rb"
+SPEC_OUTPUT_DIR = "spec_output"
 
-ENGINE = 
+ENGINE = (
   if defined? RUBY_ENGINE
     RUBY_ENGINE
   else
     "ruby"
   end
+)
 
 @raw_output = nil
 @rcov = nil
 
 def run_spec(which)
   tag = ENGINE == "ruby" ? "" : "_" + ENGINE
-  stem = SPEC.sub(%r!\.rb\Z!, "") + "#{tag}_#{which}"
+  stem = File.join(
+    SPEC_OUTPUT_DIR,
+    File.basename(SPEC).sub(%r!\.rb\Z!, "") + "#{tag}_#{which}"
+  )
 
   if @raw_output
     # text format and redirect to record hard errors

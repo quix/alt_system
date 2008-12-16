@@ -39,13 +39,13 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
       end
     end
     
-    define_module_function :system_kernel, &Kernel.method(:system)
-    define_module_function :backticks_kernel, &Kernel.method(:'`')
+    define_module_function :kernel_system, &Kernel.method(:system)
+    define_module_function :kernel_backticks, &Kernel.method(:'`')
 
     module_function
 
     def repair_command(cmd)
-      "call " +
+      "call " + (
         if cmd =~ %r!\A\s*\".*?\"!
           # already quoted
           cmd
@@ -61,6 +61,7 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
           # empty or whitespace
           cmd
         end
+      )
     end
 
     def find_runnable(file)
@@ -77,7 +78,7 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
     end
 
     def system(cmd, *args)
-      repaired =
+      repaired = (
         if args.empty?
           [repair_command(cmd)]
         elsif runnable = find_runnable(cmd)
@@ -86,11 +87,12 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
           # non-existent file
           [cmd, *args]
         end
-      system_kernel(*repaired)
+      )
+      kernel_system(*repaired)
     end
 
     def backticks(cmd)
-      backticks_kernel(repair_command(cmd))
+      kernel_backticks(repair_command(cmd))
     end
 
     define_module_function :'`', &method(:backticks)
