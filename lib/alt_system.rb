@@ -24,21 +24,23 @@
 
 require 'rbconfig'
 
-if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
-  #
-  # Alternate implementations of system() and backticks `` for Windows.
-  # 
-  module AltSystem
+#
+# Alternate implementations of system() and backticks `` for Windows.
+# 
+module AltSystem
+  WINDOWS = Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
+
+  class << self
+    def define_module_function(name, &block)
+      define_method(name, &block)
+      module_function(name)
+    end
+  end
+    
+  if WINDOWS
     RUNNABLE_EXTS = %w[com exe bat cmd]
     RUNNABLE_PATTERN = %r!\.(#{RUNNABLE_EXTS.join('|')})\Z!i
 
-    class << self
-      def define_module_function(name, &block)
-        define_method(name, &block)
-        module_function(name)
-      end
-    end
-    
     define_module_function :kernel_system, &Kernel.method(:system)
     define_module_function :kernel_backticks, &Kernel.method(:'`')
 
@@ -96,5 +98,10 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
     end
 
     define_module_function :'`', &method(:backticks)
+  else
+    # Non-Windows: same as Kernel versions
+    define_module_function :system, &Kernel.method(:system)
+    define_module_function :backticks, &Kernel.method(:'`')
+    define_module_function :'`', &Kernel.method(:'`')
   end
 end

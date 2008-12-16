@@ -1,7 +1,7 @@
 
 require 'alt_system'
 
-if defined? AltSystem
+if AltSystem::WINDOWS
   module Kernel
     [:system, :'`'].each { |name|
       remove_method name
