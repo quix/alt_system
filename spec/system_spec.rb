@@ -45,10 +45,10 @@ require 'base64'
 require 'fileutils'
 include FileUtils
 
-OLD_SYSTEM = ARGV.include?("--old")
+KERNEL_SYSTEM = ARGV.include?("--kernel")
 
-unless OLD_SYSTEM
-  require 'alt_system/insert'
+unless KERNEL_SYSTEM
+  require 'alt_system'
 end
 
 RUBY_COMMAND_STRING = %{
@@ -79,7 +79,7 @@ STEMS = [
 
 #
 # ***NOTE*** cut & paste from system.rb.
-# These constants do not exist for --old option.
+# These constants do not exist for --kernel option.
 #
 BINARY_EXTS = %w[com exe]
 BATCHFILE_EXTS = %w[bat] + (
@@ -463,7 +463,17 @@ end
 # top-level specification
 ############################################################
 
-describe((OLD_SYSTEM ? "(OLD)" : "(NEW)") + " system()") do
+desc = (
+  if KERNEL_SYSTEM
+    "[Kernel version]"
+  else
+    "[Alt version]"
+  end + (
+    " system()"         
+  )
+)
+
+describe(desc) do
   create_basic_examples
   create_builtin_examples
   create_ruby_command_examples

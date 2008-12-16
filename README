@@ -1,20 +1,28 @@
 
 Alternate implementations of system() and backticks `` for Windows.
 
-Problems in the old implementations are detailed by the spec outputs.
+To replace Kernel#system and Kernel#` in one step,
+
+  require 'alt_system'
+
+Otherwise if you wish to call AltSystem#system and AltSystem#backticks
+manually,
+
+  require 'alt_system/alt_system'
+
+The spec describes the differences between the original and alternate
+implementations:
+
+  spec_output/system_spec_kernel.html
+  spec_output/system_spec_alt.html
+
+To run the spec on both:
 
   % gem install rspec
-
-New and old spec output:
-
   % rake
 
 Or individually:
 
-  % rake new
-  % rake old
+  % rake alt
+  % rake kernel
 
-These generate, respectively
-
-  spec_output/system_spec_new.html
-  spec_output/system_spec_old.html

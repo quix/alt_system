@@ -1,6 +1,7 @@
 
 require 'rake'
 require 'spec/rake/spectask'
+require 'fileutils'
 
 SPEC = "spec/system_spec.rb"
 SPEC_OUTPUT_DIR = "spec_output"
@@ -17,6 +18,8 @@ ENGINE = (
 @rcov = nil
 
 def run_spec(which)
+  mkdir_p SPEC_OUTPUT_DIR
+
   tag = ENGINE == "ruby" ? "" : "_" + ENGINE
   stem = File.join(
     SPEC_OUTPUT_DIR,
@@ -49,7 +52,7 @@ task :engine do
   puts ENGINE
 end
 
-[:new, :old].each { |which|
+[:alt, :kernel].each { |which|
   task which do
     run_spec(which)
   end
