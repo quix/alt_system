@@ -563,7 +563,7 @@ expected: true,
 <script>:1:in `create_batchfile_example'
 x:\jruby\bin\spec:19
 
-Finished in 10.906839 seconds
+Finished in 9.906863 seconds
 
 126 examples, 61 failures
 
@@ -1168,7 +1168,7 @@ No such file or directory - File not found - result.txt
 system_spec.rb:185:in `create_batchfile_example'
 :1
 
-Finished in 7.364768 seconds
+Finished in 7.113101 seconds
 
 126 examples, 66 failures
 java.lang.ProcessImpl:-1:in `<init>': java.lang.IllegalArgumentException
@@ -1196,21 +1196,21 @@ java.lang.ProcessImpl:-1:in `<init>': java.lang.IllegalArgumentException
 	from org.jruby.RubyObject$i_method_multi$RUBYFRAMEDINVOKER$instance_eval:-1:in `call'
 	from org.jruby.runtime.callsite.CachingCallSite:270:in `cacheAndCall'
 	from org.jruby.runtime.callsite.CachingCallSite:85:in `call'
-	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.gems.$1_dot_8.gems.rspec_minus_1_dot_1_dot_11.lib.spec.example.example_methods.eval_block12812081_4086417:81:in `__file__'
+	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.gems.$1_dot_8.gems.rspec_minus_1_dot_1_dot_11.lib.spec.example.example_methods.eval_block13603674_4086417:81:in `__file__'
 	from org.jruby.internal.runtime.methods.DefaultMethod:195:in `call'
 	from org.jruby.runtime.callsite.CachingCallSite:260:in `cacheAndCall'
 	from org.jruby.runtime.callsite.CachingCallSite:75:in `call'
-	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.gems.$1_dot_8.gems.rspec_minus_1_dot_1_dot_11.lib.spec.example.example_methods.execute22089110_4086417:15:in `rescue_1$RUBY$__rescue___0'
-	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.gems.$1_dot_8.gems.rspec_minus_1_dot_1_dot_11.lib.spec.example.example_methods.execute22089110_4086417:13:in `block_0$RUBY$__block__'
-	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.gems.$1_dot_8.gems.rspec_minus_1_dot_1_dot_11.lib.spec.example.example_methods.execute22089110_4086417BlockCallback$block_0$RUBY$__block__xx1:-1:in `call'
+	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.gems.$1_dot_8.gems.rspec_minus_1_dot_1_dot_11.lib.spec.example.example_methods.execute5439183_4086417:15:in `rescue_1$RUBY$__rescue___0'
+	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.gems.$1_dot_8.gems.rspec_minus_1_dot_1_dot_11.lib.spec.example.example_methods.execute5439183_4086417:13:in `block_0$RUBY$__block__'
+	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.gems.$1_dot_8.gems.rspec_minus_1_dot_1_dot_11.lib.spec.example.example_methods.execute5439183_4086417BlockCallback$block_0$RUBY$__block__xx1:-1:in `call'
 	from org.jruby.runtime.CompiledBlock:120:in `yield'
 	from org.jruby.runtime.Block:124:in `yield'
-	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.$1_dot_8.timeout.timeout31768270_4086417:48:in `__file__'
+	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.$1_dot_8.timeout.timeout9171948_4086417:48:in `__file__'
 	from org.jruby.ast.executable.AbstractScript:31:in `__file__'
 	from org.jruby.internal.runtime.methods.DefaultMethod:258:in `call'
 	from org.jruby.internal.runtime.methods.WrapperMethod:78:in `call'
 	from org.jruby.runtime.callsite.CachingCallSite:139:in `callIter'
-	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.gems.$1_dot_8.gems.rspec_minus_1_dot_1_dot_11.lib.spec.example.example_methods.execute22089110_4086417:12:in `__file__'
+	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.gems.$1_dot_8.gems.rspec_minus_1_dot_1_dot_11.lib.spec.example.example_methods.execute5439183_4086417:12:in `__file__'
 	from org.jruby.internal.runtime.methods.DefaultMethod:279:in `call'
 	from org.jruby.runtime.callsite.CachingCallSite:300:in `cacheAndCall'
 	from org.jruby.runtime.callsite.CachingCallSite:157:in `call'
@@ -1233,7 +1233,7 @@ java.lang.ProcessImpl:-1:in `<init>': java.lang.IllegalArgumentException
 	from org.jruby.internal.runtime.methods.DefaultMethod:330:in `call'
 	from org.jruby.runtime.callsite.CachingCallSite:320:in `cacheAndCall'
 	from org.jruby.runtime.callsite.CachingCallSite:198:in `call'
-	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.gems.$1_dot_8.gems.rspec_minus_1_dot_1_dot_11.lib.spec.example.example_group_methods.run25455341_4086417:141:in `__file__'
+	from ruby.jit.ruby.X_3a_.jruby.lib.ruby.gems.$1_dot_8.gems.rspec_minus_1_dot_1_dot_11.lib.spec.example.example_group_methods.run32100556_4086417:141:in `__file__'
 	from org.jruby.internal.runtime.methods.DefaultMethod:195:in `call'
 	from org.jruby.runtime.callsite.CachingCallSite:260:in `cacheAndCall'
 	from org.jruby.runtime.callsite.CachingCallSite:75:in `call'
