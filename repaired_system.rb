@@ -89,8 +89,10 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
       system_kernel(*repaired)
     end
 
-    def `(cmd) #`
+    def backticks(cmd)
       backticks_kernel(repair_command(cmd))
     end
+
+    define_module_function :'`', &method(:backticks)
   end
 end
