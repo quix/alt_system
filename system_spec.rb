@@ -46,13 +46,7 @@ include FileUtils
 OLD_SYSTEM = ARGV.include?("--old")
 
 unless OLD_SYSTEM
-  require './repaired_system.rb'
-  module Kernel
-    [:system, :'`'].each { |name|
-      remove_method name
-      define_method name, &RepairedSystem.method(name)
-    }
-  end
+  require 'alt_system_insert'
 end
 
 RUBY_COMMAND_STRING = %{

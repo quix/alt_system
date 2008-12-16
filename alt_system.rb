@@ -28,7 +28,7 @@ if Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
   #
   # Alternate implementations of system() and backticks `` for Windows.
   # 
-  module RepairedSystem
+  module AltSystem
     RUNNABLE_EXTS = %w[com exe bat cmd]
     RUNNABLE_PATTERN = %r!\.(#{RUNNABLE_EXTS.join('|')})\Z!i
 
