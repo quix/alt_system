@@ -411,19 +411,14 @@ def create_variable_expansion_examples
   end
 end
 
-#
-# Cannot raise Errno::ENOENT for nonexisting files because 'call' is
-# necessary.
-#
-
 def create_empty_examples
   describe "with empty argument(s)" do
     it "should fail with one empty argument" do
       system("").should == false
     end
-    #it "should raise Errno::ENOENT with one empty argument (backticks)" do
-    #  lambda { `` }.should raise_error(Errno::ENOENT)
-    #end
+    it "should not raise an exception with one empty argument (backticks)" do
+      lambda { `` }.should_not raise_error(Exception)
+    end
     it "should fail with multiple empty arguments passed via ruby" do
       system("", "").should == false
     end
@@ -442,16 +437,16 @@ def create_nonexistent_examples
       it "should fail with no arguments" do
         system(cmd).should == false
       end
-      #it "should raise Errno::ENOENT with no arguments (backticks)" do
-      #  lambda { `#{cmd}` }.should raise_error(Errno::ENOENT)
-      #end
+      it "should not raise an exception with no arguments (backticks)" do
+        lambda { `#{cmd}` }.should_not raise_error(Exception)
+      end
       it "should fail with multiple arguments passed via command string" do
         system("#{cmd} 1 2").should == false
       end
-      #it "should raise Errno::ENOENT with multiple arguments " +
-      #  "passed via command string (backticks)" do
-      #  lambda { `#{cmd} 1 2` }.should raise_error(Errno::ENOENT)
-      #end
+      it "should not raise an exception with multiple arguments " +
+        "passed via command string (backticks)" do
+        lambda { `#{cmd} 1 2` }.should_not raise_error(Exception)
+      end
       it "should fail with multiple arguments passed via ruby" do
         system(cmd, "1", "2").should == false
       end
