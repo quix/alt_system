@@ -51,6 +51,10 @@ unless KERNEL_SYSTEM
   require 'alt_system'
 end
 
+############################################################
+# constants
+############################################################
+
 RUBY_COMMAND_STRING = %{
   File.join(Config::CONFIG["bindir"], Config::CONFIG["ruby_install_name"])
 }.strip
@@ -73,23 +77,16 @@ STEMS = [
   "s t/u v/w x/y z",
 ]
 
+#
+# AltSystem::RUNNABLE_EXTS not defined during --kernel check.
+#
+BINARY_EXTS = %w[com exe]
+BATCHFILE_EXTS = %w[bat cmd]
+RUNNABLE_EXTS = BINARY_EXTS + BATCHFILE_EXTS
+
 ############################################################
 # util
 ############################################################
-
-#
-# ***NOTE*** cut & paste from system.rb.
-# These constants do not exist for --kernel option.
-#
-BINARY_EXTS = %w[com exe]
-BATCHFILE_EXTS = %w[bat] + (
-  if (t = ENV["COMSPEC"]) and t =~ %r!command\.exe\Z!i
-    []
-  else
-    %w[cmd]
-  end
-)
-RUNNABLE_EXTS = BINARY_EXTS + BATCHFILE_EXTS
 
 def quote(string)
   %Q!"#{string}"!
