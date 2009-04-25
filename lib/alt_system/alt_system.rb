@@ -29,7 +29,6 @@ require 'rbconfig'
 # 
 module AltSystem
   WINDOWS = Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
-  EXECUTION_FAIL_STATUS = RUBY_VERSION < "1.9.0" ? false : nil
 
   class << self
     def define_module_function(name, &block)
@@ -39,6 +38,66 @@ module AltSystem
   end
     
   if WINDOWS
+    EXECUTION_FAIL_STATUS = RUBY_VERSION < "1.9.0" ? false : nil
+
+    #
+    # I believe magical treatment of built-in shell commands is wrong,
+    # but this is how it is. ruby-core:21661
+    #
+    # From win32/win32.c szInternalCmds.
+    # 
+    INTERNAL_COMMANDS = %w[
+      assoc
+      break
+      call
+      cd
+      chcp
+      chdir
+      cls
+      color
+      copy
+      ctty
+      date
+      del
+      dir
+      echo
+      endlocal
+      erase
+      exit
+      for
+      ftype
+      goto
+      if
+      lfnfor
+      lh
+      lock
+      md
+      mkdir
+      move
+      path
+      pause
+      popd
+      prompt
+      pushd
+      rd
+      rem
+      ren
+      rename
+      rmdir
+      set
+      setlocal
+      shift
+      start
+      time
+      title
+      truename
+      type
+      unlock
+      ver
+      verify
+      vol
+    ]
+
     RUNNABLE_EXTS = %w[com exe bat cmd]
     RUNNABLE_PATTERN = %r!\.(#{RUNNABLE_EXTS.join('|')})\Z!i
 
@@ -90,8 +149,15 @@ module AltSystem
           elsif runnable = find_runnable(cmd)
             [File.expand_path(runnable), *args]
           else
-            # non-existent file -- maybe variable expansion will work
-            [cmd, *args]
+            if INTERNAL_COMMANDS.include? cmd.downcase
+              # magic
+              [
+                 [cmd, *args.map { |t| %Q!"#{t}"! }].join(" ")
+              ]
+            else
+              # non-existent file -- maybe variable expansion will work
+              [cmd, *args]
+            end
           end
         )
         kernel_system(*repaired)

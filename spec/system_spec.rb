@@ -343,8 +343,10 @@ def create_builtin_examples
     it "should succeed with arguments passed via command string" do
       system("echo 1 2").should == true
     end
-    it "should fail with arguments passed via ruby" do
-      system("echo", "1", "2").should == false
+    it "should succeed with arguments passed via ruby" do
+      # I believe magical treatment of built-in shell commands is wrong,
+      # but this is how it is. ruby-core:21661
+      system("echo", "1", "2").should == true
     end
     it "should succeed and obtain correct data with backticks" do
       `echo 1 2`.strip.should == "1 2"
