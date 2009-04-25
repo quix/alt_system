@@ -411,13 +411,13 @@ end
 def create_empty_examples
   describe "with empty argument(s)" do
     it "should fail with one empty argument" do
-      system("").should == false
+      system("").should == AltSystem::EXECUTION_FAIL_STATUS
     end
     it "should not raise an exception with one empty argument (backticks)" do
       lambda { `` }.should_not raise_error(Exception)
     end
     it "should fail with multiple empty arguments passed via ruby" do
-      system("", "").should == false
+      system("", "").should == AltSystem::EXECUTION_FAIL_STATUS
     end
   end
 end
@@ -445,7 +445,7 @@ def create_nonexistent_examples
         lambda { `#{cmd} 1 2` }.should_not raise_error(Exception)
       end
       it "should fail with multiple arguments passed via ruby" do
-        system(cmd, "1", "2").should == false
+        system(cmd, "1", "2").should == AltSystem::EXECUTION_FAIL_STATUS
       end
     end
   }

@@ -29,6 +29,7 @@ require 'rbconfig'
 # 
 module AltSystem
   WINDOWS = Config::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
+  EXECUTION_FAIL_STATUS = RUBY_VERSION < "1.9.0" ? false : nil
 
   class << self
     def define_module_function(name, &block)
@@ -80,17 +81,21 @@ module AltSystem
     end
 
     def system(cmd, *args)
-      repaired = (
-        if args.empty?
-          [repair_command(cmd)]
-        elsif runnable = find_runnable(cmd)
-          [File.expand_path(runnable), *args]
-        else
-          # non-existent file
-          [cmd, *args]
-        end
-      )
-      kernel_system(*repaired)
+      if cmd.empty?
+        EXECUTION_FAIL_STATUS
+      else
+        repaired = (
+          if args.empty?
+            [repair_command(cmd)]
+          elsif runnable = find_runnable(cmd)
+            [File.expand_path(runnable), *args]
+          else
+            # non-existent file -- maybe variable expansion will work
+            [cmd, *args]
+          end
+        )
+        kernel_system(*repaired)
+      end
     end
 
     def backticks(cmd)
